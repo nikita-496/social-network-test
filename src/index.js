@@ -13,8 +13,7 @@ import { BrowserRouter } from 'react-router-dom'
     <BrowserRouter>
       <App 
         state={state} 
-        addPost={store.addPost.bind(store)} 
-        updateNewPostText={store.updateNewPostText.bind(store)}
+        dispatch={store.dispatch.bind(store)}
       />
     </BrowserRouter>,
     document.getElementById('root')
