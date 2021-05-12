@@ -1,3 +1,5 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
 let store = {
   _state : {
@@ -41,7 +43,7 @@ let store = {
     console.log('State changed');
   },
   dispatch(action) {
-    if (action.type === "ADD-POST") {
+    if (action.type === ADD_POST) {
       debugger
       let newPost = {
         id: 5,
@@ -58,7 +60,10 @@ let store = {
   }
 }
 
-window.store = store;
+
+export const addPostActionCreater = () => ({type: ADD_POST})
+export const updateNewPostTextActionCreater = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
 
 export default store;
 
