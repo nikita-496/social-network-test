@@ -1,8 +1,10 @@
+//данный мир (файл)- Аналог store в Redux
+
 import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import sidebarReducer from "./sidebarReducer";
 
-
+//store управленец (менеджер) состояния (state)
 let store = {
   _state : {
     profilePage: {
