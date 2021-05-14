@@ -1,13 +1,14 @@
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
+const SET_USERS = 'SET_USERS'
 
 let initialState = {
-  posts: [
-      {id: 1, follwoed: false, fullName: 'Nikita', status: 'I\'m Front-end Developer', location: {sity: 'Magnitogorsk', country: 'Russia'} },
+  users: [
+      /*{id: 1, follwoed: false, fullName: 'Nikita', status: 'I\'m Front-end Developer', location: {sity: 'Magnitogorsk', country: 'Russia'} },
       {id: 2, follwoed: true, fullName: 'Darya', status: 'I\'m Back-end Developer', location: {sity: 'Moskow', country: 'Russia'} },
       {id: 3, follwoed: false, fullName: 'Dmitriy', status: 'I\'m DevOps', location: {sity: 'Kazan', country: 'Russia'} },
       {id: 4, follwoed: true, fullName: 'Sergey', status: 'I\'m Front-end Developer', location: {sity: 'Novosibirsk', country: 'Russia'} },
-  ],
+  */],
   newPostText: 'it-kamasutra.com'
 }
  const usersReducer = (state = initialState, action) => { //если state нет (action не пришел), в свлучае первого запуска приложения, то будешь имeть начальное сотяоние  
@@ -36,6 +37,10 @@ let initialState = {
         return user
         })
       }
+
+      case SET_USERS: {
+        return {...state, users: [...state.users, ...action.users]}
+      }
     default: 
         return state
     }
@@ -43,4 +48,5 @@ let initialState = {
 
 export const followAC = (userId) => ( {type: FOLLOW, userId} ) //AC - ActionCretor
 export const unFollowAC = (userId) => ( {type: UNFOLLOW, userId } )
+export const setusersAC = (users) => ( {type: SET_USERS, users } )
 export default usersReducer
