@@ -3,12 +3,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState = {
-  users: [
-      /*{id: 1, follwoed: false, fullName: 'Nikita', status: 'I\'m Front-end Developer', location: {sity: 'Magnitogorsk', country: 'Russia'} },
-      {id: 2, follwoed: true, fullName: 'Darya', status: 'I\'m Back-end Developer', location: {sity: 'Moskow', country: 'Russia'} },
-      {id: 3, follwoed: false, fullName: 'Dmitriy', status: 'I\'m DevOps', location: {sity: 'Kazan', country: 'Russia'} },
-      {id: 4, follwoed: true, fullName: 'Sergey', status: 'I\'m Front-end Developer', location: {sity: 'Novosibirsk', country: 'Russia'} },
-  */],
+  users: [],
   newPostText: 'it-kamasutra.com'
 }
  const usersReducer = (state = initialState, action) => { //если state нет (action не пришел), в свлучае первого запуска приложения, то будешь имeть начальное сотяоние  
@@ -20,7 +15,7 @@ let initialState = {
         //users: [...state.users],
         users: state.users.map( user => {
           if (user.id === action.userId) {
-            return {...user, follwoed: true}
+            return {...user, followed: true}
           }
           return user
         })
@@ -32,7 +27,7 @@ let initialState = {
       //users: [...state.users],
       users: state.users.map( user => {
         if (user.id === action.userId) {
-          return {...user, follwoed: false}
+          return {...user, followed: false}
         }
         return user
         })
