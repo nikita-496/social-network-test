@@ -4,7 +4,9 @@ const SET_USERS = 'SET_USERS'
 
 let initialState = {
   users: [],
-  newPostText: 'it-kamasutra.com'
+  pageSize: 5,
+  totalUsersCount: 21,
+  currentPage: 2 
 }
  const usersReducer = (state = initialState, action) => { //если state нет (action не пришел), в свлучае первого запуска приложения, то будешь имeть начальное сотяоние  
   
