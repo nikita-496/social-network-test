@@ -1,14 +1,17 @@
+//Типы action
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOOGLE_IS_FETCING = 'TOOGLE_IS_FETCING'
 
 let initialState = {
   users: [],
   pageSize: 100,
   totalUsersCount: 0,
-  currentPage: 1
+  currentPage: 1,
+  isFetching: true
 }
 
 //измененеи state (бизнес логики)
@@ -49,6 +52,9 @@ let initialState = {
       case SET_TOTAL_USERS_COUNT: {
         return {...state, totalUsersCount: action.count}
       }
+      case TOOGLE_IS_FETCING: {
+        return {...state, isFetching: action.isFetching}
+      }
     default: 
         return state
     }
@@ -59,4 +65,5 @@ export const unFollowAC = (userId) => ( {type: UNFOLLOW, userId } )
 export const setusersAC = (users) => ( {type: SET_USERS, users } )
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
+export const toggleIsFetchingAC = (isFetching) => ({type:TOOGLE_IS_FETCING, isFetching })
 export default usersReducer
