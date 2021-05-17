@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { followAC, setusersAC, unFollowAC, setCurrentPageAC, setTotalCountAC, toggleIsFetchingAC } from '../../redux/usersReducer'
+import { follow, setUsers, unFollow, setCurrentPage, setTotalCount, toggleIsFetching } from '../../redux/usersReducer'
 import UsersAPIComponent from './UsersAPIComponent'
 
 let mapStateToProps = (state) => {
@@ -12,7 +12,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
+/*let mapDispatchToProps = (dispatch) => {
     return {
         follow: (userId) => {
             dispatch(followAC(userId));
@@ -33,6 +33,10 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(toggleIsFetchingAC(isFetching))
         }
     }
-}
+}*/
 
-export default  connect(mapStateToProps, mapDispatchToProps) (UsersAPIComponent);
+export default  connect(mapStateToProps, 
+    {
+        follow, unFollow, setUsers, 
+        setCurrentPage, setTotalCount, toggleIsFetching
+    }) (UsersAPIComponent);

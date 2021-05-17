@@ -14,7 +14,7 @@ class UsersAPIComponent extends React.Component{
             .then(response =>{
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
+                this.props.setTotalCount(response.data.totalCount)
         }); 
         }
 
@@ -37,7 +37,7 @@ class UsersAPIComponent extends React.Component{
                         onPageChanged={this.onPageChanged}
                         users={this.props.users}
                         follow={this.props.follow}
-                        unfollow={this.props.unfollow}
+                        unFollow={this.props.unFollow}
 
                 />
         </>
