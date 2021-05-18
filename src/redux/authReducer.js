@@ -6,7 +6,8 @@ let initialState = {
   id: null,
   email: null,
   login: null,
-  isFetching: true
+  isFetching: true,
+  isAuth: false
 }
 
 //измененеи state (бизнес логики)
@@ -16,7 +17,8 @@ let initialState = {
     case SET_USER_DATA: 
       return {
         ...state,
-        ...action.data //деструктуризация объекта data
+        ...action.data, //деструктуризация объекта data,
+        isAuth: true
       }
 
     default: 
