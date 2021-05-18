@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component{
     //все side-effects делаются в методе жизненного цикла ComponentDidMount()
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if (!userId) {userId=2}
+        if (!userId) {userId=17158}
         
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
             //ответ с сервера 
