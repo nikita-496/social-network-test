@@ -20,10 +20,11 @@ class UsersAPIComponent extends React.Component{
         }
 
         onPageChanged = (pageNumber) => {
-            this.props.toggleIsFetching(true)
             this.props.setCurrentPage(pageNumber)
+            this.props.toggleIsFetching(true)
+            
 
-            getUsers(pageNumber, this.propspageSize)
+            getUsers(pageNumber, this.props.pageSize)
             .then(data =>{
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
@@ -31,6 +32,7 @@ class UsersAPIComponent extends React.Component{
         }
 
     render() {
+        debugger
         return <>
                 {this.props.isFetching ? <Preloader /> : null}
                 <Users totalUsersCount={this.props.totalUsersCount} 
