@@ -13,7 +13,6 @@ class UsersAPIComponent extends React.Component{
 
             //сналача получаем пользователей, затем в them обрабатываем ответ от сервера
             getUsers(this.props.currentPage, this.pageSize).then(data =>{
-                debugger
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
                 this.props.setTotalCount(data.totalCount)
@@ -41,6 +40,8 @@ class UsersAPIComponent extends React.Component{
                         users={this.props.users}
                         follow={this.props.follow}
                         unFollow={this.props.unFollow}
+                        toggleFollowingProgress={this.props.toggleFollowingProgress}
+                        followingInProgress={this.props.followingInProgress}
 
                 />
         </>
