@@ -1,3 +1,5 @@
+import { getUsers } from "../api/api"
+
 //Типы action
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -70,11 +72,27 @@ let initialState = {
     }
 }
 
-export const follow = (userId) => ( {type: FOLLOW, userId} ) //AC - ActionCretor
+export const follow = (userId) => ( {type: FOLLOW, userId} ) //AC - ActionCreator
 export const unFollow = (userId) => ( {type: UNFOLLOW, userId } )
 export const setUsers = (users) => ( {type: SET_USERS, users } )
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 export const toggleIsFetching = (isFetching) => ({type:TOOGLE_IS_FETCING, isFetching })
 export const toggleFollowingProgress = (isFetching, userId) => ({type:TOOGLE_IS_FOLOWWING_PROGRESS, isFetching, userId })
+
+
+export const getUsersThunkCreator = (currentPage ,pageSize) => {
+    return (dispatch) => {
+
+    dispatch(toggleIsFetching(true))
+
+    getUsers(currentPage, currentPage).then(data => {
+      dispatch(toggleIsFetching(false))
+      dispatch(setUsers(data.items))
+      dispatch(setTotalCount(data.totalCount))
+    })
+  }
+}
+
+
 export default usersReducer

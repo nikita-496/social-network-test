@@ -6,17 +6,16 @@ import Users from './Users';
 
 
 
+
 class UsersAPIComponent extends React.Component{
         //запрос на сервер
         componentDidMount() {
-            this.props.toggleIsFetching(true)
-
-            //сналача получаем пользователей, затем в them обрабатываем ответ от сервера
-            getUsers(this.props.currentPage, this.pageSize).then(data =>{
+            this.props.getUsersThunkCreator()
+           /* getUsers(this.props.currentPage, this.pageSize).then(data =>{
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
                 this.props.setTotalCount(data.totalCount)
-        }); 
+        }*/; 
         }
 
         onPageChanged = (pageNumber) => {
