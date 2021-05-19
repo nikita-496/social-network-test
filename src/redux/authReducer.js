@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api"
+
 //Типы action
 const SET_USER_DATA = 'SET_USER_DATA' //установить пользовательские данные
 
@@ -26,5 +28,53 @@ let initialState = {
     }
 }
 
-export const setAuthUserData = (id,email, login) => ( {type: SET_USER_DATA, data: {id,email,login}} ) //AC - ActionCretor
+  export const setAuthUserData = (id,email, login) => ( {type: SET_USER_DATA, data: {id,email,login}} ) //AC - ActionCretor
+
+//Логика авторизации пользователя
+  export const authorizeThunkCreator = (id,email, login) => {
+
+    return (dispatch) => {
+      usersAPI.authorize(id,email, login).then(response =>{
+        //0 - залогинены
+      if (response.data.resultCode === 0) {
+          let  {id,email, login} = response.data.data
+          dispatch(setAuthUserData(id,email, login))
+      }
+    }); 
+
+    }
+}
+
+
 export default authReducer
+
+
+
+
+
+
+
+/*export const authorize = () => {
+  return (dispatch) => {
+
+    dispatch(setAuthUserData)
+
+    usersAPI.authorize(id, email, login).then(response => {
+
+      })
+
+    
+  }
+}*/
+/*export  authReducer = () => {
+  return (dispatch) => {
+    usersAPI.authorize(id, email, login)
+            .then(response =>{
+               if (response.data.resultCode === 0) {
+                   let  {id,email, login} = response.data.data
+                   dispatch(setAuthUserData(id,email, login))
+               }
+        }); 
+  }
+  
+}*/
