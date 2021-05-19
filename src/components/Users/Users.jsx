@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 const Users = (props) => {
 
+    //вывод страниц
     let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize) 
 
         let pages = [];
@@ -14,11 +15,10 @@ const Users = (props) => {
             pages.push(i)
         }
 
-    return (
-        <div> 
-            <div>
+    return  <div> 
+        <div>
                 {pages.map(page => {
-                   return <span className={props.currentPage === page && styles.selectedPage} onClick={(e) => { props.onPageChanged(page) }}>{page}</span>
+                   return <span className={props.currentPage === page ? styles.selectedPage : styles.noSelected} onClick={(e) => { props.onPageChanged(page) }}>{page}</span>
                 })}
             </div>
             {
@@ -33,8 +33,8 @@ const Users = (props) => {
                     <div>
                         {
                         user.followed 
-                            ? <button disabled={props.followingInProgress} onClick={() => {
-                                props.toggleFollowingProgress(true);
+                            ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, user.id);
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow${user.id}`, {
                                         withCredentials: true,
                                         headers: {
@@ -46,14 +46,14 @@ const Users = (props) => {
                                     if (response.data.resultCode === 0) {
                                         props.unFollow(user.id)
                                     }
-                                    props.toggleFollowingProgress(false)
+                                    props.toggleFollowingProgress(false, user.id)
+
                             }); 
     
                             }}>Follow</button>
-
-                            : <button disabled={props.followingInProgress} onClick={() => {
-                                
-                                props.toggleFollowingProgress(true);
+                            
+                            : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, user.id);
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow${user.id}`, {}, {
                                         withCredentials: true,
                                         headers: {
@@ -65,7 +65,7 @@ const Users = (props) => {
                                     if (response.data.resultCode === 0) {
                                         props.follow(user.id)
                                     }
-                                    props.toggleFollowingProgress(false)
+                                    props.toggleFollowingProgress(false, user.id)
                             }); 
     
                             }}>Follow</button>
@@ -85,7 +85,6 @@ const Users = (props) => {
             </div>)
             }
         </div>
-        )
 }
 
 export default Users;

@@ -13,7 +13,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: true,
-  followingInProgress: false 
+  followingInProgress: [] 
 }
 
 //измененеи state (бизнес логики)
@@ -58,7 +58,12 @@ let initialState = {
         return {...state, isFetching: action.isFetching}
       }
       case TOOGLE_IS_FOLOWWING_PROGRESS: {
-        return {...state, followingInProgress: action.isFetching}
+        return {
+          ...state, 
+          followingInProgress: action.isFetching 
+            ? [...state.followingInProgress, action.userId]
+            : [...state.followingInProgress.filter(id => id != action.userId)]
+        }
       }
     default: 
         return state
@@ -71,5 +76,5 @@ export const setUsers = (users) => ( {type: SET_USERS, users } )
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
 export const toggleIsFetching = (isFetching) => ({type:TOOGLE_IS_FETCING, isFetching })
-export const toggleFollowingProgress = (isFetching) => ({type:TOOGLE_IS_FOLOWWING_PROGRESS, isFetching })
+export const toggleFollowingProgress = (isFetching, userId) => ({type:TOOGLE_IS_FOLOWWING_PROGRESS, isFetching, userId })
 export default usersReducer

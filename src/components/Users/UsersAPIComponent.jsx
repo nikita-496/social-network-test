@@ -32,7 +32,6 @@ class UsersAPIComponent extends React.Component{
         }
 
     render() {
-        debugger
         return <>
                 {this.props.isFetching ? <Preloader /> : null}
                 <Users totalUsersCount={this.props.totalUsersCount} 
