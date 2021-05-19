@@ -23,14 +23,14 @@ export const usersAPI = {
         return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow${userId}`)
     },
     authorize () {
-        return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})    
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})    
+    },
+    getUserProfile (userId) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
     }
    
 }
 
-/*export const authorize = () => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})      
-}*/
 
 
 

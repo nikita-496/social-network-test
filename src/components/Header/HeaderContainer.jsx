@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header';
 import  { authorizeThunkCreator }  from '../../redux/authReducer';
 import { connect } from 'react-redux';
-import { usersAPI } from '../../api/api';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
