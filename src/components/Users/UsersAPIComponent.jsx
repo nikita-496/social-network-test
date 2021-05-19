@@ -1,6 +1,4 @@
-import axios from 'axios'
 import React from 'react'
-import { getUsers } from '../../api/api';
 import Preloader from '../common/preloader';
 import Users from './Users';
 
@@ -10,24 +8,11 @@ import Users from './Users';
 class UsersAPIComponent extends React.Component{
         //запрос на сервер
         componentDidMount() {
-            this.props.getUsersThunkCreator()
-           /* getUsers(this.props.currentPage, this.pageSize).then(data =>{
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalCount(data.totalCount)
-        }*/; 
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
 
         onPageChanged = (pageNumber) => {
-            this.props.setCurrentPage(pageNumber)
-            this.props.toggleIsFetching(true)
-            
-
-            getUsers(pageNumber, this.props.pageSize)
-            .then(data =>{
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-        }); 
+            this.props.getUsers(pageNumber, this.props.pageSize)
         }
 
     render() {
@@ -38,9 +23,8 @@ class UsersAPIComponent extends React.Component{
                         currentPage={this.props.currentPage}
                         onPageChanged={this.onPageChanged}
                         users={this.props.users}
-                        follow={this.props.follow}
-                        unFollow={this.props.unFollow}
-                        toggleFollowingProgress={this.props.toggleFollowingProgress}
+                        followSuccess={this.props.followSuccess}
+                        unFollowSuccess={this.props.unFollowSuccess}
                         followingInProgress={this.props.followingInProgress}
 
                 />
