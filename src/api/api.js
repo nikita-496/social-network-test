@@ -26,9 +26,22 @@ export const usersAPI = {
         return instance.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})    
     },
     getUserProfile (userId) {
-        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
+        console.warn('Obsolete method. Please profileAPI object.')
+        return profileAPI.getUserProfile(userId)
     }
    
+}
+
+export const profileAPI = {
+    getUserProfile (userId) {
+        return instance.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}` )
+    },
+    getUserStatus(userId) {
+        return instance.get(`profile/status/` + userId )
+    },
+    updateStatus(status) {
+        return instance.put(`profile/status/`, { status: status })
+    }
 }
 
 
