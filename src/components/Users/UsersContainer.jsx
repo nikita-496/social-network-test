@@ -14,10 +14,11 @@ let mapStateToProps = (state) => {
     }
 }
 
-
-
-export default  withAuthRedirect(connect(mapStateToProps, 
-    {
-        followSuccess, unFollowSuccess, setCurrentPage, 
-        toggleFollowingProgress,getUsers
-    }) (UsersAPIComponent));
+export default (
+        withAuthRedirect,
+        connect(mapStateToProps, 
+            {
+                followSuccess, unFollowSuccess, setCurrentPage, 
+                toggleFollowingProgress,getUsers
+            })
+    )(UsersAPIComponent)

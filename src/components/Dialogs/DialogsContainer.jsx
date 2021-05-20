@@ -4,6 +4,7 @@ import { sendMessageCreater, updateNewMessageBodyCreter } from '../../redux/dial
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
+import { compose } from 'redux';
 
 //Функции, которыми настраивается connect
 let mapStateToProps = (state) => {
@@ -23,7 +24,8 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let AuthRedirectComonent = withAuthRedirect(Dialogs)
+export default compose (
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Dialogs)
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (AuthRedirectComonent);
-export default DialogsContainer;
