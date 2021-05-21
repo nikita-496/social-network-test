@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form"
 import { authAPI, usersAPI } from "../api/api"
 
 //Типы action
@@ -44,16 +45,17 @@ let initialState = {
     }
 }
 
-export const login = (email, password, rememberMe) => {
-  return (dispatch) => {
+export const login = (email, password, rememberMe) => (dispatch) => {
+
     authAPI.login(email, password, rememberMe).then(response =>{
       //0 - залогинены
     if (response.data.resultCode === 0) {
         dispatch(authorizeThunkCreator())
+    } else {
+      let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"
+      dispatch(stopSubmit("login", {_error: message}))
     }
   }); 
-
-  }
 }
 
 export const logout = () => {

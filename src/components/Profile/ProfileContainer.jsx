@@ -11,9 +11,11 @@ import { compose } from 'redux';
 class ProfileContainer extends React.Component{
 
     //все side-effects делаются в методе жизненного цикла ComponentDidMount()
-    componentDidMount() {
+    componentDidMount(props) {
         let userId = this.props.match.params.userId
-        if (!userId) {userId=17158}
+        if (!userId) {
+            userId=this.props.authorizedUserId
+        }
         
         this.props.getProfile(userId)
         this.props.getStatus(userId)
@@ -21,14 +23,18 @@ class ProfileContainer extends React.Component{
     render() {
         return (
             
-                <Profile {...this.props} profile={this.props.profile} status={this.props.status} upDataStatus={this.props.updataStatus}/>
-        )
+                <Profile {...this.props} profile={this.props.profile} 
+                    status={this.props.status} 
+                    upDataStatus={this.props.updataStatus}/>
+            )
     }
 }
 
 let mapStateToProps = (state) => ( {
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.id,
+    isAuth: state.auth.isAuth
 } )
 
 export default compose (
