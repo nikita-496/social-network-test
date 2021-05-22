@@ -3,7 +3,6 @@ import Profile from './Profile';
 import {connect} from 'react-redux'
 import {withRouter } from 'react-router';
 import { getProfile, getStatus, updataStatus } from '../../redux/profileReducer';
-import { withAuthRedirect } from '../../hoc/WithAuthRedirect';
 import { compose } from 'redux';
 
 
@@ -11,10 +10,13 @@ import { compose } from 'redux';
 class ProfileContainer extends React.Component{
 
     //все side-effects делаются в методе жизненного цикла ComponentDidMount()
-    componentDidMount(props) {
+    componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId=this.props.authorizedUserId
+            /*if (!userId) {
+                this.props.history.push("/login")
+            }*/
         }
         
         this.props.getProfile(userId)
