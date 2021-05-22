@@ -15,7 +15,6 @@ let mapStateToProps = (state) => {
 }
 
 export default (
-        withAuthRedirect,
         connect(mapStateToProps, 
             {
                 followSuccess, unFollowSuccess, setCurrentPage, 

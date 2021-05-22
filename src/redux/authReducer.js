@@ -29,7 +29,7 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USE
   {userId, email, login, isAuth}  });
 
 export const getAuthUserData = () => (dispatch) => {
-  return authAPI.authorize()
+  return authAPI.me()
     .then(response => {
       if (response.data.resultCode === 0) {
           let {id, login, email} = response.data.data;
@@ -43,7 +43,11 @@ authAPI.login(email, password, rememberMe)
   .then(response => {
       if (response.data.resultCode === 0) {
           dispatch(getAuthUserData())
-      }
+      } else {
+        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+        dispatch(stopSubmit("login", {_error: message}));
+
+    }
   });
 }
 

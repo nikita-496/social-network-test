@@ -19,7 +19,7 @@ const ProfileInfo = (props) => {
                 <img src={props.profile.photos.large}/>
                 <img src='../../assets/images/my_avatar.png'/>
                 <ProfileStatus status={props.status} upDataStatus={props.upDataStatus}/>
-                <div>About Me: {props.profile.aboutMe} </div>
+                <div>About Me: I'm Nikita{props.profile.aboutMe} </div>
                 <div>contacts: {props.profile.contacts.facebook} </div>
                 <div>contacts: {props.profile.contacts.vk} </div>
                 <div>contacts: {props.profile.contacts.twitter} </div>

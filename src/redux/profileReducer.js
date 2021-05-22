@@ -29,11 +29,11 @@ let initialState = {
         newPostText: ''
       }   
     }
-      case SET_USER_PROFILE : {
-        return {...state, profile: action.profile}
-    }
     case SET_STATUS : {
       return {...state, status: action.status}
+    }
+      case SET_USER_PROFILE : {
+        return {...state, profile: action.profile}
     }
     default: 
         return state
@@ -41,18 +41,18 @@ let initialState = {
 }
 //Actions creator
 export const addPostActionCreater = (newPostText) => ({type: ADD_POST, newPostText})
-const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile}) //profile: profile
-const setStatus = (status) => ({type: SET_STATUS, status})
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile}) //profile: profile
+export const setStatus = (status) => ({type: SET_STATUS, status})
 
 //thunk
-export const getProfile = (userId) => (dispatch) =>{
-    usersAPI.getUserProfile(userId).then(response =>{
+export const getUserProfile = (userId) => (dispatch) =>{
+    usersAPI.getProfile(userId).then(response =>{
       dispatch(setUserProfile(response.data))
     }); 
 }
 
 export const getStatus = (userId) => (dispatch) =>{
-    profileAPI.getUserStatus(userId)
+    profileAPI.getStatus(userId)
       .then(response =>{
       dispatch(setStatus(response.data))
     });  
