@@ -20,6 +20,7 @@ class App extends Component {
     }
 
     render() {
+        debugger
         if (!this.props.initialized) {
             return <Preloader />
         }
@@ -47,7 +48,7 @@ class App extends Component {
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-//испраелние бага на стадии инициализации приложения
+//испраелние бага (сбивание роутинга)
 export default compose(
     withRouter,
     connect (mapStateToProps, {initializeApp})) (App);

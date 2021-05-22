@@ -6,14 +6,16 @@ import { getStatus, getUserProfile, updataStatus } from '../../redux/profileRedu
 import { compose } from 'redux';
 
 
-//Данная компонента осуществляет работу, связанную с отправкой запроса на сервер
 class ProfileContainer extends React.Component{
 
-    //все side-effects делаются в методе жизненного цикла ComponentDidMount()
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId=this.props.authorizedUserId
+            if(!userId) {
+                this.props.history.push("/login")
+            }
+
             /*if (!userId) {
                 this.props.history.push("/login")
         }*/
@@ -22,6 +24,7 @@ class ProfileContainer extends React.Component{
         this.props.getUserProfile(userId)
         this.props.getUserProfile(userId)
     }
+
     render() {
         return (
             
