@@ -19,6 +19,7 @@ class ProfileStatus extends React.Component {
         this.setState({
          editMode: false
         })
+        this.props.upDataStatus(this.status.status)
      }
 
      onStatusChenge = (e) => {

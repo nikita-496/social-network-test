@@ -14,8 +14,8 @@ let initialState = {
   profile: null,
   status: "",
 }
- const profileReducer = (state = initialState, action) => { //если state нет (action не пришел), в свлучае первого запуска приложения, то будешь имeть начальное сотяоние  
-  
+ const profileReducer = (state = initialState, action) => {  
+   
   switch (action.type) {
     case ADD_POST : {
     let newPost = {

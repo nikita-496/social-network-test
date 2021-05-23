@@ -4,9 +4,10 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from './MyPosts/MyPostsСontainer';
 
 const Profile = (props) => {
+    debugger
     return (
         <div>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.upDataStatus}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <MyPostsContainer />
         </div>
     )

@@ -15,19 +15,14 @@ class ProfileContainer extends React.Component{
             if(!userId) {
                 this.props.history.push("/login")
             }
-
-            /*if (!userId) {
-                this.props.history.push("/login")
-        }*/
         }
-        
         this.props.getUserProfile(userId)
         this.props.getUserProfile(userId)
     }
 
     render() {
+        {/*console.log("Render Profile")*/}
         return (
-            
                 <Profile {...this.props} profile={this.props.profile} 
                     status={this.props.status} 
                     updataStatus={this.props.updataStatus}/>
@@ -35,12 +30,16 @@ class ProfileContainer extends React.Component{
     }
 }
 
-let mapStateToProps = (state) => ( {
+let mapStateToProps = (state) => {
+    //console.log("mapStateToProps Profile")
+return ( {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     authorizedUserId: state.auth.userId,
     isAuth: state.auth.isAuth
 } )
+}
+
 
 export default compose (
     connect (mapStateToProps, {getUserProfile, getStatus, updataStatus}),
