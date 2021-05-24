@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import s from './ProfileInfo.module.css';
-
 
 const ProfileStatusWithHook = (props) => {
 
@@ -13,7 +11,7 @@ const ProfileStatusWithHook = (props) => {
 
     const deActivedEditMode = () => {
         setEditMode(false)
-        props.updataStatus(status)
+        props.updateStatus(status)
     }
 
     const onStatusChenge = (e) => {
