@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 const ProfileStatusWithHook = (props) => {
     //отрисовка компоненты
-    debugger
     let [editMode, setEditMode] = useState(false)
     let [status, setStatus] = useState(props.status)
 
     //синхронизация компоненты с новыми props
     useEffect( () => {
-        debugger
         setStatus(props.status)
     }, [props.status] )
 

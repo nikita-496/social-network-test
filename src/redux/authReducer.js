@@ -1,5 +1,5 @@
 import { stopSubmit } from "redux-form"
-import { authAPI, usersAPI } from "../api/api"
+import { authAPI} from "../api/api"
 
 //Типы action
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -31,12 +31,14 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({type: SET_USE
 export const getAuthUserData = () => async (dispatch) => {
   //response, который приходил в callback переденный внутри then
   //теперь придет как результат await
-  let response = await authAPI.me() 
+    let response = await  authAPI.me()
+  
+         
+    if (response.data.resultCode === 0) {
+        let {id, login, email} = response.data.data;
+        dispatch(setAuthUserData(id, email, login, true));
+        }
     
-      if (response.data.resultCode === 0) {
-          let {id, login, email} = response.data.data;
-          dispatch(setAuthUserData(id, email, login, true));
-      }
 }
 
 export const login = (email, password, rememberMe) => async (dispatch) => {

@@ -2,26 +2,12 @@ import React from 'react'
 import styles from './Users.module.css'
 import userPhoto from '../../assets/images/default-user.png'
 import { NavLink } from 'react-router-dom'
-import { usersAPI } from '../../api/api'
 import Paginator from '../common/Paginator/Paginator'
 
 
-const Users = ({currentPage, totalUsersCount, pageSize, onPageChanged,...props}) => {
-
-    //вывод страниц
-    let pagesCount = Math.ceil (props.totalUsersCount / props.pageSize) 
-
-        let pages = [];
-        for (let i=1 ; i <= pagesCount; i++) {
-            pages.push(i)
-        }
-
-    return  <div> 
-      
-            
-                <Paginator currentPage={currentPage} onPageChanged={onPageChanged} totalUsersCount={totalUsersCount} pageSize={pageSize} />
-                {
-                props.users.map(user => <div key={user.id}>
+const User = (user, followingInProgress, unFollowSuccess, followSuccess) => {
+    return (
+        <div>
                 <span>
                     <div>
                         <NavLink to={'./profile/' + user.id}>
@@ -32,11 +18,11 @@ const Users = ({currentPage, totalUsersCount, pageSize, onPageChanged,...props})
                     <div>
                         {
                         user.followed 
-                            ? <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {props.unFollowSuccess(user.id)}}>
+                            ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {unFollowSuccess(user.id)}}>
                                     Unfollow
                                 </button>
                             
-                            : <button disabled={props.followingInProgress.some(id => id === user.id)} onClick={() => {props.followSuccess(user.id)}}>
+                            : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {followSuccess(user.id)}}>
                                     Follow
                                 </button>
                         }
@@ -53,8 +39,6 @@ const Users = ({currentPage, totalUsersCount, pageSize, onPageChanged,...props})
                     </span>
                 </span>
             </div>)
-            }
-        </div>
 }
 
-export default Users;
+export default User;
