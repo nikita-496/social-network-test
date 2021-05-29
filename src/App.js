@@ -8,11 +8,15 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from "./components/Login/Login"
-import {initializeApp} from './redux/appReducer';
-import { connect } from 'react-redux';
+
+import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
 import {withRouter } from 'react-router';
 import Preloader from './components/common/preloader';
+import { BrowserRouter } from 'react-router-dom'
+import store from './redux/reduxStore'
+import { initializeApp } from './redux/appReducer';
+
 
 class App extends Component {
     componentDidMount() {
@@ -43,14 +47,22 @@ class App extends Component {
     }
    
 }
-
 const mapStateToProps = (state) => ({
     initialized: state.app.initialized
 })
-//испраелние бага (сбивание роутинга)
-export default compose(
+
+let AppContainer = compose(
     withRouter,
     connect (mapStateToProps, {initializeApp})) (App);
+
+const MainApp = () => {
+    return <BrowserRouter>
+            <Provider store={store}>
+              <AppContainer />
+            </Provider>
+        </BrowserRouter>
+} 
+export default MainApp
     
     
 
